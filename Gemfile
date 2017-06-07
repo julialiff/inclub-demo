@@ -8,6 +8,8 @@ gem 'i18n'
 gem 'rspec-rails'
 gem 'sqlanywhere'
 gem 'activerecord-sqlanywhere-adapter'
+gem 'rubocop'
+gem 'pry-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
