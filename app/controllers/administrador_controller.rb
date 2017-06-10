@@ -43,16 +43,16 @@ class AdministradorController < ActionController::Base
 #   CONSTRAINT `fkFesta2` FOREIGN KEY (`idFesta`) REFERENCES `Festa` (`idFesta`) ON DELETE NO ACTION ON UPDATE NO ACTION
 # ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-    15.times do |n|
-      @idFesta = rand(1..150)
-      10.times do |n|
-        @idUsuario = rand(16..1000)
-        @dataHora = Faker::Time.between(10.days.from_now, 30.days.from_now).to_formatted_s(:db)
-        sql = "INSERT INTO CheckIn(idFesta, idUsuario, dataHora)
-                                  VALUES (#{@idFesta}, #{@idUsuario}, '#{@dataHora}');"
-        @result = @connection.connection.insert(sql)
-      end
-    end
+    # 15.times do |n|
+    #   @idFesta = rand(1..150)
+    #   10.times do |n|
+    #     @idUsuario = rand(16..1000)
+    #     @dataHora = Faker::Time.between(10.days.from_now, 30.days.from_now).to_formatted_s(:db)
+    #     sql = "INSERT INTO CheckIn(idFesta, idUsuario, dataHora)
+    #                               VALUES (#{@idFesta}, #{@idUsuario}, '#{@dataHora}');"
+    #     @result = @connection.connection.insert(sql)
+    #   end
+    # end
 
     # sql = "SELECT * from Festa"
     # @result = @connection.connection.execute(sql)

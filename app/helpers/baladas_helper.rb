@@ -1,0 +1,2 @@
+module BaladasHelper
+end
