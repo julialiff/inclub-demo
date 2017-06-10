@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422235957) do
+ActiveRecord::Schema.define(version: 20170610230521) do
 
   create_table "Administrador", primary_key: "idAdministrador", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nome",     limit: 45
@@ -111,10 +111,26 @@ ActiveRecord::Schema.define(version: 20170422235957) do
     t.index ["idUsuario"], name: "fk_ingresso_usuario_idx", using: :btree
   end
 
+  create_table "Usuario", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "idCadastro",            null: false
+    t.string  "dataNasc",   limit: 45
+    t.index ["idCadastro"], name: "idCadastro_idx", using: :btree
+  end
+
   create_table "administradors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nome"
     t.string   "email"
     t.string   "senha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "baladas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cadastros", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -133,4 +149,5 @@ ActiveRecord::Schema.define(version: 20170422235957) do
   add_foreign_key "Festa", "Balada", column: "idBalada", primary_key: "idCadastro", name: "fkBalada3"
   add_foreign_key "Ingresso", "Festa", column: "idFesta", primary_key: "idFesta", name: "fk_ingresso_festa"
   add_foreign_key "Ingresso", "Usuario", column: "idUsuario", primary_key: "idCadastro", name: "fk_ingresso_usuario"
+  add_foreign_key "Usuario", "Cadastro", column: "idCadastro", primary_key: "idCadastro", name: "idCadastro3"
 end
