@@ -1,0 +1,2 @@
+class Festum < ApplicationRecord
+end

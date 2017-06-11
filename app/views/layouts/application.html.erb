@@ -16,26 +16,15 @@
 
   </head>
   <body>
-  <%= render 'layouts/navbar' %>
-  <%= render 'layouts/carousel' %>
-
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/carousel' %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
+      <%= render 'layouts/footer' %>
     </div>
-
-
-
-
-
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -49,29 +38,3 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Inclub</title>
-    <%#= csrf_meta_tags %>
-
-    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-  <%##= render 'layouts/header' %>
-    <br />
-    <div class="container" style="margin-bottom:20px;">
-      <%# flash.each do |message_type, message| %>
-        <div class="alert alert-<%#= message_type %>"><%#= message %></div>
-      <%# end %>
-      <%#= yield %>
-    </div>
-    <%#= render 'layouts/footer' %>
-    <%#= debug(params) if Rails.env.development? %>
-  </body>
-</html>
- -->

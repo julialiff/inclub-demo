@@ -1,3 +1,4 @@
+<% @festas = proximas_festas %>
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -9,32 +10,38 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+        <%= image_tag('balada-1.jpg', class: 'first-slide') %>
           <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
+              <h1><%= @festas[0]['nome'] %></h1>
+              <p>Às <%= @festas[0]['data'].strftime('%d/%m/%Y') %> - <%= @festas[0]['hora'].strftime('%H:%M') %></p>
+              <p>Na <%= info_balada(@festas[0]['idBalada']) %></p>
+              <p><% if @festas[0]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
+              <p><%= link_to('Saiba mais!', festa_path(@festas[0]['idFesta']), class: "btn btn-lg btn-primary") %></p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+        <%= image_tag('balada-2.jpeg', class: 'second-slide') %>
           <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
+              <h1><%= @festas[1]['nome'] %></h1>
+              <p>Às <%= @festas[1]['data'].strftime('%d/%m/%Y') %> - <%= @festas[1]['hora'].strftime('%H:%M') %></p>
+              <p>Na <%= info_balada(@festas[1]['idBalada']) %></p>
+              <p><% if @festas[1]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
+              <p><%= link_to('Saiba mais!', festa_path(@festas[1]['idFesta']), class: "btn btn-lg btn-primary") %></p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+          <%= image_tag('balada-3.jpg', class: 'third-slide') %>
           <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
+              <h1><%= @festas[2]['nome'] %></h1>
+              <p>Às <%= @festas[2]['data'].strftime('%d/%m/%Y') %> - <%= @festas[2]['hora'].strftime('%H:%M') %></p>
+              <p>Na <%= info_balada(@festas[2]['idBalada']) %></p>
+              <p><% if @festas[2]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
+              <p><%= link_to('Saiba mais!', festa_path(@festas[2]['idFesta']), class: "btn btn-lg btn-primary") %></p>
             </div>
           </div>
         </div>
