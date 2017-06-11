@@ -10,6 +10,9 @@ gem 'sqlanywhere'
 gem 'activerecord-sqlanywhere-adapter'
 gem 'rubocop'
 gem 'pry-rails'
+gem 'bootstrap-sass'
+gem 'sass-rails', '~> 5.0'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
