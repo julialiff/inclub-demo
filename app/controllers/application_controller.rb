@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :proximas_festas, :info_balada
+  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin
 
   def proximas_festas
     @connection = ActiveRecord::Base.establish_connection
@@ -13,5 +13,31 @@ class ApplicationController < ActionController::Base
     sql = "SELECT nome FROM Cadastro where idCadastro = #{idBalada};"
     r = ActiveRecord::Base.connection.exec_query(sql)
     r[0]['nome']
+  end
+
+  def estilo_festa(idFesta)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM EstiloFesta where idFesta = #{idFesta};"
+    estilos = ActiveRecord::Base.connection.exec_query(sql)
+    result = []
+    estilos.each do |estilo|
+      sql = "SELECT nome FROM Estilo where idEstilo = #{estilo['idEstilo']};"
+      r = ActiveRecord::Base.connection.exec_query(sql)
+      unless result.include?(r[0]['nome'])
+        result << r[0]['nome']
+      end
+    end
+    result
+  end
+
+  def qtd_checkin(idFesta)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM total_checkin_festa WHERE idFesta = #{idFesta};"
+    r = ActiveRecord::Base.connection.exec_query(sql)
+    if r[0]
+      r[0]['totalCheckins']
+    else
+      0
+    end
   end
 end

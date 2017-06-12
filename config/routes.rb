@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :avaliacao_festa
+  resources :avaliacao_baladas
+  resources :usuarios
   resources :festa
   resources :baladas
   resources :cadastros

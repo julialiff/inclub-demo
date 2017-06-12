@@ -1,4 +1,42 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col col-md-9"><h1>Festa <%= @festa[:nome] %></h1></div>
+  <div class="col col-md-3"><br /><span class="btn btn-md btn-primary">Check-in!</span></div>
+</div>
+<div class="row">
+  <div class="col col-md-9">
+  </div>
+  <div class="col col-md-3">
+    <%= qtd_checkin(params[:id]) %> pessoas estão aqui!
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Quando: <b><%= @festa[:data].strftime('%d/%m/%Y') %> - <%= @festa[:hora].strftime('%H:%M') %></b>
+  </div>
+  <div class="col col-md-6">
+    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000; border-bottom: 1px dotted;"><%= info_balada(@festa[:idBalada]) %></a></b>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Tipo de bar: <b><%= if @festa[:tipoBar] then 'Open' else 'Consumação' end %></b>
+  </div>
+  <div class="col col-md-6">
+    Estilos:
+    <b>
+      <% estilo_festa(@festa[:idFesta]).each do |estilo| %>
+       <%= estilo + ',' %>
+      <% end %>
+    </b>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Endereço:
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_festum_path(@festum) %> |
-<%= link_to 'Back', festa_path %>
+<hr />
+<h3>Avaliações:</h3>
+Criar seção de comentários em outro arquivo e chamar render (um arquivo para exibir e outro para enviar a avaliação)

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Avaliacao Baladas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacao_baladas.each do |avaliacao_balada| %>
+      <tr>
+        <td><%= link_to 'Show', avaliacao_balada %></td>
+        <td><%= link_to 'Edit', edit_avaliacao_balada_path(avaliacao_balada) %></td>
+        <td><%= link_to 'Destroy', avaliacao_balada, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Avaliacao Balada', new_avaliacao_balada_path %>

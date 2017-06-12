@@ -13,11 +13,11 @@
         <%= image_tag('balada-1.jpg', class: 'first-slide') %>
           <div class="container">
             <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
-              <h1><%= @festas[0]['nome'] %></h1>
+              <h1>Festa <%= @festas[0]['nome'] %></h1>
               <p>Às <%= @festas[0]['data'].strftime('%d/%m/%Y') %> - <%= @festas[0]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[0]['idBalada']) %></p>
               <p><% if @festas[0]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><%= link_to('Saiba mais!', festa_path(@festas[0]['idFesta']), class: "btn btn-lg btn-primary") %></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[0]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
@@ -25,11 +25,11 @@
         <%= image_tag('balada-2.jpeg', class: 'second-slide') %>
           <div class="container">
             <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
-              <h1><%= @festas[1]['nome'] %></h1>
+              <h1>Festa <%= @festas[1]['nome'] %></h1>
               <p>Às <%= @festas[1]['data'].strftime('%d/%m/%Y') %> - <%= @festas[1]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[1]['idBalada']) %></p>
               <p><% if @festas[1]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><%= link_to('Saiba mais!', festa_path(@festas[1]['idFesta']), class: "btn btn-lg btn-primary") %></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[1]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
@@ -37,11 +37,11 @@
           <%= image_tag('balada-3.jpg', class: 'third-slide') %>
           <div class="container">
             <div class="carousel-caption" style=" text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">
-              <h1><%= @festas[2]['nome'] %></h1>
+              <h1>Festa <%= @festas[2]['nome'] %></h1>
               <p>Às <%= @festas[2]['data'].strftime('%d/%m/%Y') %> - <%= @festas[2]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[2]['idBalada']) %></p>
               <p><% if @festas[2]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><%= link_to('Saiba mais!', festa_path(@festas[2]['idFesta']), class: "btn btn-lg btn-primary") %></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[2]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
