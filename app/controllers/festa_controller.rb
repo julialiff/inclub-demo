@@ -13,6 +13,7 @@ class FestaController < ApplicationController
   # GET /festa/1
   # GET /festa/1.json
   def show
+    @comentarios = comentarios(params[:id])
   end
 
   # GET /festa/new
@@ -62,6 +63,16 @@ class FestaController < ApplicationController
       format.html { redirect_to festa_url, notice: 'Festa was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def comentarios(idFesta)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM AvaliacaoFesta WHERE idFesta = #{idFesta};"
+    ActiveRecord::Base.connection.exec_query(sql)
+  end
+
+  def self.foda
+    'vai se foder irmão'
   end
 
   private

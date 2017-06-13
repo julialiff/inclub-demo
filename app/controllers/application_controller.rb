@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin
+  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario
 
   def proximas_festas
     @connection = ActiveRecord::Base.establish_connection
@@ -39,5 +39,12 @@ class ApplicationController < ActionController::Base
     else
       0
     end
+  end
+
+  def nome_usuario(idUsuario)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT idCadastro, nome FROM Cadastro WHERE idCadastro = #{idUsuario};"
+    user = ActiveRecord::Base.connection.exec_query(sql)
+    user.first.symbolize_keys!
   end
 end
