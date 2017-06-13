@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Festa</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @festa.each do |festum| %>
+      <tr>
+        <td><%= link_to 'Show', festum %></td>
+        <td><%= link_to 'Edit', edit_festum_path(festum) %></td>
+        <td><%= link_to 'Destroy', festum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Festum', new_festum_path %>

@@ -1,0 +1,2 @@
+module AvaliacaoBaladasHelper
+end

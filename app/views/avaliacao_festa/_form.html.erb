@@ -1,0 +1,17 @@
+<%= form_for(avaliacao_festum) do |f| %>
+  <% if avaliacao_festum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(avaliacao_festum.errors.count, "error") %> prohibited this avaliacao_festum from being saved:</h2>
+
+      <ul>
+      <% avaliacao_festum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

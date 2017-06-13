@@ -1,0 +1,28 @@
+<%= form_tag do %>
+<div class="row">
+  <div class="col col-sm-10">
+    <%= text_area_tag(:comentario, '', class: "form-control") %>
+  </div>
+</div>
+<div class="row" style="margin-top:10px;">
+  <div class="col col-sm-6" style="margin-top:10px;">
+    Nota:
+    <%= radio_button_tag(:nota, 1, class: "form-control") %>
+    <%= label_tag(:nota1, 1) %>
+    <%= radio_button_tag(:nota, 2, class: "form-control") %>
+    <%= label_tag(:nota2, 2) %>
+    <%= radio_button_tag(:nota, 3, class: "form-control") %>
+    <%= label_tag(:nota3, 3) %>
+    <%= radio_button_tag(:nota, 4, class: "form-control") %>
+    <%= label_tag(:nota4, 4) %>
+    <%= radio_button_tag(:nota, 5, class: "form-control") %>
+    <%= label_tag(:nota5, 5) %>
+  </div>
+  <div class="col col-sm-6">
+    <div style="width: 100px;">
+    <%= submit_tag('Enviar!', class: "form-control btn btn-sm btn-primary") %>
+    </div>
+  </div>
+</div>
+<% end %>
+<hr />
