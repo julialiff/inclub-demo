@@ -1,17 +1,51 @@
-<%= form_for(usuario) do |f| %>
-  <% if usuario.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
-
-      <ul>
-      <% usuario.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit('Criar conta!', class: 'form-control') %>
+<%= form_tag do %>
+<div class="row">
+  <div class="col col-sm-3">
+    Nome:
   </div>
+  <div class="col col-sm-9">
+    <%= text_field_tag(:nome, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-3">
+    E-mail:
+  </div>
+  <div class="col col-sm-9">
+    <%= email_field_tag(:email, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-3">
+    Username:
+  </div>
+  <div class="col col-sm-9">
+    <%= text_field_tag(:username, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-3">
+    Senha:
+  </div>
+  <div class="col col-sm-9">
+    <%= password_field_tag(:senha, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-3">
+    Telefone:
+  </div>
+  <div class="col col-sm-9">
+    <%= text_field_tag(:telefone, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-3">
+    Data de nascimento:
+  </div>
+  <div class="col col-sm-9">
+    <%= text_field_tag(:dataNasc, '', class: "form-control") %>
+  </div>
+
+  <div class="col col-sm-9">
+    <div style="width:150px;">
+      <%= submit_tag('Criar conta!', class: 'form-control btn-primary') %>
+    </div>
+</div>
+  hidden_field tipo 2
 <% end %>
