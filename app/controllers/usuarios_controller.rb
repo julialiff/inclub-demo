@@ -14,7 +14,6 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
-    @usuario = Usuario.new
   end
 
   # GET /usuarios/1/edit
@@ -24,17 +23,39 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.json
   def create
-    @usuario = Usuario.new(usuario_params)
+    @connection = ActiveRecord::Base.establish_connection
 
-    respond_to do |format|
-      if @usuario.save
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render :show, status: :created, location: @usuario }
-      else
-        format.html { render :new }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
-    end
+    nome = params[:nome]
+    email = params[:email]
+    username = params[:username]
+    senha = params[:senha]
+    senha = Digest::SHA1.hexdigest senha
+    telefone = params[:telefone]
+    tipo = params[:tipo][:tipo].to_i
+    data_nasc = params[:dataNasc]
+
+    sql = "INSERT INTO Cadastro(nome, email, username, senha, telefone, tipo, isActive)
+                         VALUES('#{nome}', '#{email}', '#{username}', '#{senha}', '#{telefone}', #{tipo}, true);"
+    puts sql
+    result = @connection.connection.insert(sql)
+    puts result
+    sql = "INSERT INTO Usuario(idCadastro, dataNasc)
+                        VALUES(#{result}, '#{data_nasc}');"
+    puts sql
+    @result = @connection.connection.insert(sql)
+
+    Usuario.connection
+    @usuario = Usuario.last
+
+    # respond_to do |format|
+      # if @result == 0
+        # format.html { redirect_to @usuario, notice: 'Cadastro realizado com sucesso!' }
+        # format.json { render :show, status: :created, location: @usuario }
+      # else
+        # format.html { render :new }
+        # format.json { render json: @usuario.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   # PATCH/PUT /usuarios/1

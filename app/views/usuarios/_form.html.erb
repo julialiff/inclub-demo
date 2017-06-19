@@ -1,51 +1,52 @@
-<%= form_tag do %>
+<%= form_tag({ controller: 'usuarios', action: 'create' }, method: 'post') do %>
 <div class="row">
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     Nome:
   </div>
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <%= text_field_tag(:nome, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     E-mail:
   </div>
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <%= email_field_tag(:email, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     Username:
   </div>
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <%= text_field_tag(:username, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     Senha:
   </div>
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <%= password_field_tag(:senha, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     Telefone:
   </div>
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <%= text_field_tag(:telefone, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-3">
+  <div class="col col-sm-3" style="margin-top:10px;">
     Data de nascimento:
   </div>
-  <div class="col col-sm-9">
-    <%= text_field_tag(:dataNasc, '', class: "form-control") %>
+  <div class="col col-sm-9" style="margin-top:10px;">
+    <%= date_field_tag(:dataNasc, '', class: "form-control") %>
   </div>
 
-  <div class="col col-sm-9">
+  <div class="col col-sm-9" style="margin-top:10px;">
     <div style="width:150px;">
+      <%= hidden_field(:tipo, :tipo, :value => 2) %>
       <%= submit_tag('Criar conta!', class: 'form-control btn-primary') %>
     </div>
+  </div>
 </div>
-  hidden_field tipo 2
 <% end %>
