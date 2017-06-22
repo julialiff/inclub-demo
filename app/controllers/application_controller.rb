@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  include SessionsHelper
   helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario
 
   def proximas_festas
