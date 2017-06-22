@@ -19,6 +19,14 @@
               <ul class="nav navbar-nav">
                 <li><%= link_to 'Festas', root_path %></li>
                 <li><%= link_to 'Baladas', baladas_path %></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+               <form class="navbar-form navbar-left">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Pesquisar</button>
+                </form>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
