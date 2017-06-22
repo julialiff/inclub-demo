@@ -1,25 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Festa</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @festa.each do |festum| %>
-      <tr>
-        <td><%= link_to 'Show', festum %></td>
-        <td><%= link_to 'Edit', edit_festum_path(festum) %></td>
-        <td><%= link_to 'Destroy', festum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Festum', new_festum_path %>
+<h1>Festas chegando:</h1>
+<div class="container marketing">
+  <% i = 1 %>
+  <% @festas.each do |festa| %>
+    <% festa.symbolize_keys! %>
+    <% if i%3 == 0 %><div class="row"><% end %>
+      <div class="col-lg-4">
+        <h2><a href="../festa/<%= festa[:idFesta] %>" style="color:#5F1B70;">Festa <%= festa[:nome] %></a></h2>
+        <p><%= festa[:data].strftime('%d/%m/%Y') %> - <%= festa[:hora].strftime('%H:%M') %></p>
+        <p>Na <%= info_balada(festa[:idBalada]) %></p>
+        <p><% if festa[:tipo_bar] %>Open bar<% else %>Consumação<% end %></p>
+      </div>
+    <% if i%3 == 0 %></div><hr><% end %>
+    <% i+=1%>
+  <% end %>
+</div>

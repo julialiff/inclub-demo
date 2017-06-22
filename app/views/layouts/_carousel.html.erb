@@ -17,7 +17,7 @@
               <p>Às <%= @festas[0]['data'].strftime('%d/%m/%Y') %> - <%= @festas[0]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[0]['idBalada']) %></p>
               <p><% if @festas[0]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[0]['idFesta'] %>">Saiba mais!</a></span></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festa/<%= @festas[0]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
               <p>Às <%= @festas[1]['data'].strftime('%d/%m/%Y') %> - <%= @festas[1]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[1]['idBalada']) %></p>
               <p><% if @festas[1]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[1]['idFesta'] %>">Saiba mais!</a></span></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festa/<%= @festas[1]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <p>Às <%= @festas[2]['data'].strftime('%d/%m/%Y') %> - <%= @festas[2]['hora'].strftime('%H:%M') %></p>
               <p>Na <%= info_balada(@festas[2]['idBalada']) %></p>
               <p><% if @festas[2]['tipo_bar'] %>Open bar<% else %>Consumação<% end %></p>
-              <p><span class="btn btn-lg btn-default"><a href="../festas/<%= @festas[2]['idFesta'] %>">Saiba mais!</a></span></p>
+              <p><span class="btn btn-lg btn-default"><a href="../festa/<%= @festas[2]['idFesta'] %>">Saiba mais!</a></span></p>
             </div>
           </div>
         </div>
