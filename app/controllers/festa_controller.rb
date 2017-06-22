@@ -6,8 +6,8 @@ class FestaController < ApplicationController
   # todas festas ativas
   def index
     @connection = ActiveRecord::Base.establish_connection
-    sql = 'SELECT idFesta, nome, data, hora, tipo_bar, idBalada FROM Festa WHERE isActive = true;'
-    @festa = ActiveRecord::Base.connection.exec_query(sql)
+    sql = 'SELECT idFesta, nome, data, hora, tipo_bar, idBalada FROM Festa WHERE (data BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 100 DAY) && isActive = true);'
+    @festas = ActiveRecord::Base.connection.exec_query(sql)
   end
 
   # GET /festa/1
@@ -69,10 +69,6 @@ class FestaController < ApplicationController
     @connection = ActiveRecord::Base.establish_connection
     sql = "SELECT * FROM AvaliacaoFesta WHERE idFesta = #{idFesta};"
     ActiveRecord::Base.connection.exec_query(sql)
-  end
-
-  def self.foda
-    'vai se foder irmão'
   end
 
   private
