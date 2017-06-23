@@ -22,7 +22,7 @@
     Quando: <b><%= @festa[:data].strftime('%d/%m/%Y') %> - <%= @festa[:hora].strftime('%H:%M') %></b>
   </div>
   <div class="col col-md-6">
-    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000; border-bottom: 1px dotted;"><%= info_balada(@festa[:idBalada]) %></a></b>
+    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000;"><%= info_balada(@festa[:idBalada]) %></a></b>
   </div>
 </div>
 <div class="row">
