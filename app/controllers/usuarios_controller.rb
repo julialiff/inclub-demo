@@ -10,6 +10,14 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
+    id = params[:id]
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM Cadastro
+           INNER JOIN Usuario
+           ON Cadastro.idCadastro = Usuario.idCadastro
+           AND Cadastro.idCadastro = #{id};"
+    @usuario = ActiveRecord::Base.connection.exec_query(sql)
+    @usuario = @usuario[0].symbolize_keys!
   end
 
   # GET /usuarios/new
@@ -42,20 +50,19 @@ class UsuariosController < ApplicationController
     sql = "INSERT INTO Usuario(idCadastro, dataNasc)
                         VALUES(#{result}, '#{data_nasc}');"
     puts sql
-    @result = @connection.connection.insert(sql)
+    result = @connection.connection.insert(sql)
 
     Usuario.connection
     @usuario = Usuario.last
 
-    # respond_to do |format|
-      # if @result == 0
-        # format.html { redirect_to @usuario, notice: 'Cadastro realizado com sucesso!' }
-        # format.json { render :show, status: :created, location: @usuario }
-      # else
-        # format.html { render :new }
-        # format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      # end
-    # end
+    respond_to do |format|
+      if result == 0
+        flash[:sucess] = "Bem-vindo, #{session[:nome]}"
+        redirect_to root_path
+      else
+        flash.now[:error] = "Não foi possível efetuar seu cadastro"
+      end
+    end
   end
 
   # PATCH/PUT /usuarios/1

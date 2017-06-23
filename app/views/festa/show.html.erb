@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
   <div class="col col-md-9"><h1>Festa <%= @festa[:nome] %></h1></div>
-  <div class="col col-md-3"><br /><span class="btn btn-md btn-primary">Check-in!</span></div>
+  <div class="col col-md-3"><br />
+    <% if checked_in?(session[:idCadastro], params[:id]) %>
+      <%= button_to 'Desfazer check-in', checkin_delete_path, method: :delete, class: 'btn btn-md btn-danger', params: { idFesta: params[:id] } %>
+    <% else %>
+      <%= button_to 'Check-in!', checkin_path, method: :post, class: 'btn btn-md btn-primary', params: { idFesta: params[:id] } %>
+    <% end %>
+  </div>
+
 </div>
 <div class="row">
   <div class="col col-md-9">
@@ -15,7 +22,7 @@
     Quando: <b><%= @festa[:data].strftime('%d/%m/%Y') %> - <%= @festa[:hora].strftime('%H:%M') %></b>
   </div>
   <div class="col col-md-6">
-    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000; border-bottom: 1px dotted;"><%= info_balada(@festa[:idBalada]) %></a></b>
+    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000;"><%= info_balada(@festa[:idBalada]) %></a></b>
   </div>
 </div>
 <div class="row">

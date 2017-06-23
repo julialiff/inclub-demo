@@ -65,7 +65,10 @@ class BaladasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_balada
-      @balada = Balada.find(params[:id])
+      @connection = ActiveRecord::Base.establish_connection
+      sql = "SELECT * FROM Balada INNER JOIN Cadastro ON Balada.idCadastro = Cadastro.idCadastro WHERE(Cadastro.idCadastro = #{params[:id]} && Cadastro.isActive = true);"
+      @balada = ActiveRecord::Base.connection.exec_query(sql)
+      @balada = @balada.first.symbolize_keys!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

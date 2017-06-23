@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario
+  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario, :checked_in?, :estilo_balada
 
   def proximas_festas
     @connection = ActiveRecord::Base.establish_connection
@@ -31,6 +31,21 @@ class ApplicationController < ActionController::Base
     result
   end
 
+    def estilo_balada(idBalada)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM EstiloBalada where idBalada = #{idBalada};"
+    estilos = ActiveRecord::Base.connection.exec_query(sql)
+    result = []
+    estilos.each do |estilo|
+      sql = "SELECT nome FROM Estilo where idEstilo = #{estilo['idEstilo']};"
+      r = ActiveRecord::Base.connection.exec_query(sql)
+      unless result.include?(r[0]['nome'])
+        result << r[0]['nome']
+      end
+    end
+    result
+  end
+
   def qtd_checkin(idFesta)
     @connection = ActiveRecord::Base.establish_connection
     sql = "SELECT * FROM total_checkin_festa WHERE idFesta = #{idFesta};"
@@ -47,5 +62,12 @@ class ApplicationController < ActionController::Base
     sql = "SELECT idCadastro, nome FROM Cadastro WHERE idCadastro = #{idUsuario};"
     user = ActiveRecord::Base.connection.exec_query(sql)
     user.first.symbolize_keys!
+  end
+
+  def checked_in?(idUsuario, idFesta)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM CheckIn WHERE idUsuario = #{idUsuario} && idFesta = #{idFesta};"
+    result = ActiveRecord::Base.connection.exec_query(sql)
+    !result[0].nil?
   end
 end
