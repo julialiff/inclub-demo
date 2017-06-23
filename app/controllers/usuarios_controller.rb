@@ -57,11 +57,10 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if result == 0
-        flash.now[:sucess] = "Bem-vindo, #{session[:nome]}"
+        flash[:sucess] = "Bem-vindo, #{session[:nome]}"
         redirect_to root_path
       else
         flash.now[:error] = "Não foi possível efetuar seu cadastro"
-        redirect_to root_path
       end
     end
   end
