@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if !user.empty?
       user = user.first.symbolize_keys!
       log_in user
-      flash.now[:sucess] = "Bem-vindo, #{session[:nome]}"
+      flash[:success] = "Bem-vindo, #{session[:nome]}"
       redirect_to root_path
       # Log the user in and redirect to the user's show page.
     else

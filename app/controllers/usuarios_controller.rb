@@ -17,7 +17,7 @@ class UsuariosController < ApplicationController
            ON Cadastro.idCadastro = Usuario.idCadastro
            AND Cadastro.idCadastro = #{id};"
     @usuario = ActiveRecord::Base.connection.exec_query(sql)
-    # @usuario = @usuario[0].symbolize_keys!
+    @usuario = @usuario[0].symbolize_keys!
   end
 
   # GET /usuarios/new

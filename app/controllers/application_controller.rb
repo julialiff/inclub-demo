@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario
+  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario, :checked_in?
 
   def proximas_festas
     @connection = ActiveRecord::Base.establish_connection
@@ -47,5 +47,12 @@ class ApplicationController < ActionController::Base
     sql = "SELECT idCadastro, nome FROM Cadastro WHERE idCadastro = #{idUsuario};"
     user = ActiveRecord::Base.connection.exec_query(sql)
     user.first.symbolize_keys!
+  end
+
+  def checked_in?(idUsuario, idFesta)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM CheckIn WHERE idUsuario = #{idUsuario} && idFesta = #{idFesta};"
+    result = ActiveRecord::Base.connection.exec_query(sql)
+    !result[0].nil?
   end
 end
