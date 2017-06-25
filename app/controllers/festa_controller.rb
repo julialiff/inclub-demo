@@ -6,7 +6,7 @@ class FestaController < ApplicationController
   # todas festas ativas
   def index
     @connection = ActiveRecord::Base.establish_connection
-    sql = 'SELECT idFesta, nome, data, hora, tipo_bar, idBalada FROM Festa WHERE (data BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 100 DAY) && isActive = true);'
+    sql = 'SELECT idFesta, nome, data, hora, tipo_bar, idBalada FROM Festa WHERE (data BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 100 DAY) && isActive = true) ORDER BY data ASC;'
     @festas = ActiveRecord::Base.connection.exec_query(sql)
   end
 
@@ -19,6 +19,32 @@ class FestaController < ApplicationController
   # GET /festa/new
   def new
     @festa = Festa.new
+  end
+
+  def search
+    @nome = params[:festa] ? params[:festa] : ''
+    @data_inicio = params[:data_inicio] ? params[:data_inicio] : Time.now.strftime('%Y-%m-%d')
+    @data_fim = params[:data_fim] ? params[:data_fim] : (Time.now + 30.days).strftime('%Y-%m-%d')
+    data_inicio = @data_inicio#.to_formatted_s(:db)
+    data_fim = @data_fim#.to_formatted_s(:db)
+    tipo_bar = if params[:tipo_bar] == 'Qualquer um' then'true || false'
+              elsif params[:tipo_bar] == 'Open bar' then true
+              else false
+              end
+
+    @connection = ActiveRecord::Base.establish_connection
+    @sql = "SELECT idFesta, nome, data, hora, tipo_bar, idBalada
+           FROM Festa
+           WHERE(
+            nome LIKE '%#{@nome}%' &&
+            data BETWEEN '#{data_inicio}' AND '#{data_fim}' &&
+            isActive = true
+            ) ORDER BY data ASC;"# &&
+
+            # BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 100 DAY &&
+            # isActive = true)
+          # ) ORDER BY data ASC;"
+    @festas = ActiveRecord::Base.connection.exec_query(@sql)
   end
 
   # GET /festa/1/edit
