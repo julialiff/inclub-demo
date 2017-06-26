@@ -14,7 +14,7 @@ class AvaliacaoFestaController < ApplicationController
 
   # GET /avaliacao_festa/new
   def new
-    @avaliacao_festum = AvaliacaoFestum.new
+    @avaliacao_festa = AvaliacaoFesta.new
   end
 
   # GET /avaliacao_festa/1/edit
@@ -24,17 +24,31 @@ class AvaliacaoFestaController < ApplicationController
   # POST /avaliacao_festa
   # POST /avaliacao_festa.json
   def create
-    @avaliacao_festum = AvaliacaoFestum.new(avaliacao_festum_params)
+    @connection = ActiveRecord::Base.establish_connection
+    idFesta = params[:idFesta][:idFesta].to_i
+    idUsuario = session[:idCadastro]
+    comentario = params[:comentario]
+    nota = params[:nota]
+    dataHora = Time.now.to_formatted_s(:db)
+    isActive = true
 
-    respond_to do |format|
-      if @avaliacao_festum.save
-        format.html { redirect_to @avaliacao_festum, notice: 'Avaliacao festum was successfully created.' }
-        format.json { render :show, status: :created, location: @avaliacao_festum }
-      else
-        format.html { render :new }
-        format.json { render json: @avaliacao_festum.errors, status: :unprocessable_entity }
-      end
-    end
+    sql = "INSERT INTO AvaliacaoFesta(idFesta, idUsuario, comentario, nota, dataHora, isActive)
+                         VALUES(#{idFesta}, #{idUsuario}, '#{comentario}', #{nota}, '#{dataHora}', true);"
+    puts sql
+    result = @connection.connection.insert(sql)
+
+    flash[:success] = 'Avaliação postada com sucesso!'
+    redirect_to "/festa/#{idFesta}"
+  end
+
+  def excluir
+    id = params[:id]
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "UPDATE AvaliacaoFesta SET isActive = false WHERE idAvaliacao = #{id};"
+    result = @connection.connection.insert(sql)
+
+    flash[:success] = 'Avaliação excluída com sucesso!'
+    redirect_to :back
   end
 
   # PATCH/PUT /avaliacao_festa/1

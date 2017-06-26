@@ -52,17 +52,7 @@ class UsuariosController < ApplicationController
     puts sql
     result = @connection.connection.insert(sql)
 
-    Usuario.connection
-    @usuario = Usuario.last
-
-    respond_to do |format|
-      if result == 0
-        flash[:sucess] = "Bem-vindo, #{session[:nome]}"
-        redirect_to root_path
-      else
-        flash.now[:error] = "Não foi possível efetuar seu cadastro"
-      end
-    end
+    redirect_to login_path
   end
 
   # PATCH/PUT /usuarios/1

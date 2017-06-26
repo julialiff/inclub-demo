@@ -1,5 +1,15 @@
 <% @comentarios.each do |comentario| %>
   <% comentario.symbolize_keys! %>
+  <% if logged_in? %>
+    <% if session[:idCadastro] == comentario[:idUsuario] %>
+      <div class="row">
+        <div class="col col-sm-7"></div>
+          <div class="col col-sm-1">
+            <a href="../excluir_aval_festa/<%= comentario[:idAvaliacao] %>"><span style="color:#A00" class="glyphicon glyphicon-remove"></span></a>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
   <div class="row">
     <div class="col col-sm-6">
       <b><a href="../usuarios/<%= comentario[:idUsuario] %>"><%= nome_usuario(comentario[:idUsuario])[:nome] %></a></b>
