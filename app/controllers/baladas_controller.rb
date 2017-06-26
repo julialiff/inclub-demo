@@ -4,12 +4,23 @@ class BaladasController < ApplicationController
   # GET /baladas
   # GET /baladas.json
   def index
-    @baladas = Balada.all
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM Balada INNER JOIN Cadastro ON Balada.idCadastro = Cadastro.idCadastro WHERE(Cadastro.isActive = true) ORDER BY nome ASC;"
+    @baladas = ActiveRecord::Base.connection.exec_query(sql)
   end
 
   # GET /baladas/1
   # GET /baladas/1.json
   def show
+    @comentarios = comentarios(params[:id])
+    @festas = festas(params[:id])
+  end
+
+
+  def festas(idBalada)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM Festa WHERE idBalada = #{idBalada};"
+    ActiveRecord::Base.connection.exec_query(sql)
   end
 
   # GET /baladas/new
@@ -61,6 +72,11 @@ class BaladasController < ApplicationController
     end
   end
 
+  def comentarios(idBalada)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT * FROM AvaliacaoBalada WHERE idBalada = #{idBalada};"
+    ActiveRecord::Base.connection.exec_query(sql)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

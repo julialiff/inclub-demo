@@ -1,0 +1,20 @@
+<% @comentarios.each do |comentario| %>
+  <% comentario.symbolize_keys! %>
+  <div class="row">
+    <div class="col col-sm-6">
+      <b><a href="../usuarios/<%= comentario[:idUsuario] %>"><%= nome_usuario(comentario[:idUsuario])[:nome] %></a></b>
+      - <%= comentario[:dataHora].strftime('%d/%m/%Y às %H:%M') %>
+    </div>
+    <div class="col col-sm-6">
+      <% (1..comentario[:nota]).each do %>
+        <span class="glyphicon glyphicon-star"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-sm-6">
+      <%= comentario[:comentario] %>
+    </div>
+  </div>
+  <hr />
+<% end %>

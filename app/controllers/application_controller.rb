@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin, :nome_usuario, :checked_in?, :estilo_balada
+  helper_method :proximas_festas, :info_balada, :estilo_festa, :qtd_checkin,
+                :nome_usuario, :checked_in?, :estilo_balada, :qtd_festas
+
+  def qtd_festas(idBalada)
+    @connection = ActiveRecord::Base.establish_connection
+    sql = "SELECT COUNT(*) as total FROM Festa WHERE idBalada = #{idBalada};"
+    ActiveRecord::Base.connection.exec_query(sql)[0]['total']
+  end
 
   def proximas_festas
     @connection = ActiveRecord::Base.establish_connection
