@@ -1,1 +1,24 @@
-
+<div class="container marketing">
+<h1>Baladas:</h1>
+<% i = 1 %>
+<% @baladas.each do |balada| %>
+  <% balada.symbolize_keys! %>
+    <% if i%3 == 0 %><div class="row"><% end %>
+      <div class="col-lg-4">
+        <h2><a href="../baladas/<%= balada[:idCadastro] %>" style="color:#5F1B70;"><%= balada[:nome] %></a></h2>
+        <p><%= qtd_festas(balada[:idCadastro]) %> festas</p>
+        <p><b>Estilo: </b>
+          <% estilo_balada(balada[:idCadastro]).each do |estilo| %>
+           <%= estilo + '' %>
+          <% end %>
+        </p>
+        <p><b>Endereço:</b>
+        <%= balada[:endereco] %>, <%= balada[:numero] %>, <%= balada[:bairro] %> -
+        <%= balada[:cidade] %>/<%= balada[:bairro] %>
+        </p>
+      </div>
+    <% if i%3 == 0 %></div><hr><% end %>
+    <% i+=1%>
+<!-- , :bairro=>"Grande", :cidade=>"Alinedo Sul", :estado=>"AL", :cep=>"36002-926",  -->
+<% end %>
+</div>
