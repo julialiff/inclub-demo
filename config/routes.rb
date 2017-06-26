@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   post 'checkin', to: 'checkin#new'
   delete 'checkin_delete', to: 'checkin#destroy'
+
+  get 'search', to: 'festa#search'
 end
