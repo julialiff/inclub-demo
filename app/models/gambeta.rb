@@ -1,17 +1,17 @@
 class Gambeta < ActiveRecord::Base
-  attr_accessor :current
-  require 'digest/sha1'
-  @connection = ActiveRecord::Base.establish_connection
+#  attr_accessor :current
+#  require 'digest/sha1'
+#  @connection = ActiveRecord::Base.establish_connection
   # establish_connection 'inclub'
   # self.table_name
-  self.table_name = 'Cadastro'
+#  self.table_name = 'Cadastro'
   # sql = "INSERT INTO Administrador(nome, email, senha) VALUES ('Julia', 'julialiff@hotmail.com', 'qwerty');"
   # sql = "DELETE FROM Cadastro WHERE idCadastro>0;";
   # @result = @connection.connection.execute(sql)
-  Faker::Config.locale = 'pt-BR'
+#  Faker::Config.locale = 'pt-BR'
 
-  sql = ''
-  @result = @connection.connection.execute(sql)
+#  sql = ''
+#  @result = @connection.connection.execute(sql)
   # geraBalada
 
   # sql = "SELECT * from Usuario"

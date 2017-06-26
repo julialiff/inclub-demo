@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+/tmp/*
+/log/*
+=======
+tmp/*
+log/*
+config/databases.yml
+cache/*
+>>>>>>> f93278b41b26feb015d61208fa443d658037fe50

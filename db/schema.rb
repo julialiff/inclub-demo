@@ -117,45 +117,7 @@ ActiveRecord::Schema.define(version: 20170611223406) do
     t.index ["idCadastro"], name: "idCadastro_idx", using: :btree
   end
 
-  create_table "administradors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "nome"
-    t.string   "email"
-    t.string   "senha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "avaliacao_baladas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "avaliacao_festa", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "baladas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "cadastros", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "festa", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "AvaliacaoBalada", "Balada", column: "idBalada", primary_key: "idCadastro", name: "fkBalada"
+   add_foreign_key "AvaliacaoBalada", "Balada", column: "idBalada", primary_key: "idCadastro", name: "fkBalada"
   add_foreign_key "AvaliacaoBalada", "Usuario", column: "idUsuario", primary_key: "idCadastro", name: "fkUsuario2"
   add_foreign_key "AvaliacaoFesta", "Festa", column: "idFesta", primary_key: "idFesta", name: "fkFesta"
   add_foreign_key "AvaliacaoFesta", "Usuario", column: "idUsuario", primary_key: "idCadastro", name: "fkUsuario"

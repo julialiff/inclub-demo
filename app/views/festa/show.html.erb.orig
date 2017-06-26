@@ -1,0 +1,53 @@
+<<<<<<< d5a90bd1c256302b94ccc0ce10f77f1350ce15f6
+<p id="notice"><%= notice %></p>
+=======
+>>>>>>> etc
+<div class="row">
+  <div class="col col-md-9"><h1>Festa <%= @festa[:nome] %></h1></div>
+  <div class="col col-md-3"><br />
+    <% if checked_in?(session[:idCadastro], params[:id]) %>
+      <%= button_to 'Desfazer check-in', checkin_delete_path, method: :delete, class: 'btn btn-md btn-danger', params: { idFesta: params[:id] } %>
+    <% else %>
+      <%= button_to 'Check-in!', checkin_path, method: :post, class: 'btn btn-md btn-primary', params: { idFesta: params[:id] } %>
+    <% end %>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col col-md-9">
+  </div>
+  <div class="col col-md-3">
+    <%= qtd_checkin(params[:id]) %> pessoas estão aqui!
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Quando: <b><%= @festa[:data].strftime('%d/%m/%Y') %> - <%= @festa[:hora].strftime('%H:%M') %></b>
+  </div>
+  <div class="col col-md-6">
+    Onde: <b><a href="../baladas/<%= @festa[:idBalada] %>" style="color: #000;"><%= info_balada(@festa[:idBalada]) %></a></b>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Tipo de bar: <b><%= if @festa[:tipoBar] then 'Open' else 'Consumação' end %></b>
+  </div>
+  <div class="col col-md-6">
+    Estilos:
+    <b>
+      <% estilo_festa(@festa[:idFesta]).each do |estilo| %>
+       <%= estilo + ',' %>
+      <% end %>
+    </b>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    Endereço:
+  </div>
+</div>
+
+<hr />
+<h3>Avaliações:</h3>
+<%= render 'avaliacoes_form' %>
+<%= render 'avaliacoes' %>

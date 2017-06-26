@@ -1,10 +1,14 @@
 <div class="row">
   <div class="col col-md-9"><h1>Festa <%= @festa[:nome] %></h1></div>
   <div class="col col-md-3"><br />
-    <% if checked_in?(session[:idCadastro], params[:id]) %>
-      <%= button_to 'Desfazer check-in', checkin_delete_path, method: :delete, class: 'btn btn-md btn-danger', params: { idFesta: params[:id] } %>
-    <% else %>
-      <%= button_to 'Check-in!', checkin_path, method: :post, class: 'btn btn-md btn-primary', params: { idFesta: params[:id] } %>
+    <% if logged_in? %>
+      <% if checked_in?(session[:idCadastro], params[:id]) %>
+        <%= button_to 'Desfazer check-in', checkin_delete_path, method: :delete, class: 'btn btn-md btn-danger', params: { idFesta: params[:id] } %>
+      <% else %>
+        <%= button_to 'Check-in!', checkin_path, method: :post, class: 'btn btn-md btn-primary', params: { idFesta: params[:id] } %>
+      <% end %>
+      <% else %>
+        <%= link_to 'Faça login e faça check-in!', login_path, class: 'btn btn-md btn-primary', style: 'color:#FFF' %>
     <% end %>
   </div>
 
