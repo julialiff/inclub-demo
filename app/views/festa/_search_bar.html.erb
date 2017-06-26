@@ -1,0 +1,30 @@
+
+<%= form_tag({ controller: 'festa', action: 'search' }, method: 'get') do %>
+  <div class="row">
+    <div class="col col-md-4"><b>Nome da festa</b></div>
+    <div class="col col-md-2"><b>De</b></div>
+    <div class="col col-md-2"><b>Até</b></div>
+    <div class="col col-md-2"><b>Tipo de bar</b></div>
+  </div>
+  <div class="row">
+    <div class="col col-md-4">
+      <%= text_field_tag(:festa, '', class: "form-control", placeholder: 'Nome da festa', value: @nome) %>
+    </div>
+    <div class="col col-md-2">
+      <%= date_field_tag :data_inicio, 'Data inicial', class: "form-control", value: @data_inicio %>
+    </div>
+    <div class="col col-md-2">
+      <%= date_field_tag :data_fim, 'Data inicial', class: "form-control", value: @data_fim %>
+    </div>
+    <div class="col col-md-2">
+      <%= select_tag(:tipo_bar, options_for_select(['Qualquer um', 'Open bar', 'Consumação']), { class: 'form-control' }) %>
+    </div>
+    <div class="col col-md-1">
+      <div style="width:50px;margin-left:50px">
+        <%= button_tag(type: 'submit', class: "form-control btn-sm btn-primary") do %>
+          <span class="glyphicon glyphicon-search"></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

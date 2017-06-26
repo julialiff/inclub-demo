@@ -1,16 +1,2 @@
 <h1>Festas chegando:</h1>
-<div class="container marketing">
-  <% i = 1 %>
-  <% @festas.each do |festa| %>
-    <% festa.symbolize_keys! %>
-    <% if i%3 == 0 %><div class="row"><% end %>
-      <div class="col-lg-4">
-        <h2><a href="../festa/<%= festa[:idFesta] %>" style="color:#5F1B70;">Festa <%= festa[:nome] %></a></h2>
-        <p><%= festa[:data].strftime('%d/%m/%Y') %> - <%= festa[:hora].strftime('%H:%M') %></p>
-        <p>Na <%= info_balada(festa[:idBalada]) %></p>
-        <p><% if festa[:tipo_bar] %>Open bar<% else %>Consumação<% end %></p>
-      </div>
-    <% if i%3 == 0 %></div><hr><% end %>
-    <% i+=1%>
-  <% end %>
-</div>
+<%= render 'festas' %>

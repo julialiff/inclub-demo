@@ -1,0 +1,6 @@
+                <%= form_tag({ controller: 'festa', action: 'search' }, method: 'get') do %>
+                  <%= text_field_tag(:festa, '', class: "form-control", placeholder: 'Pesquisar') %>
+                  <%= button_tag(type: 'submit', class: "form-control btn-sm btn-default") do %>
+                    <span class="glyphicon glyphicon-search"></span>
+                  <% end %>
+                <% end %>
