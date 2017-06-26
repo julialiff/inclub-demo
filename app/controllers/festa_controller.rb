@@ -93,7 +93,7 @@ class FestaController < ApplicationController
 
   def comentarios(idFesta)
     @connection = ActiveRecord::Base.establish_connection
-    sql = "SELECT * FROM AvaliacaoFesta WHERE idFesta = #{idFesta};"
+    sql = "SELECT * FROM AvaliacaoFesta WHERE idFesta = #{idFesta} AND isActive = true;"
     ActiveRecord::Base.connection.exec_query(sql)
   end
 

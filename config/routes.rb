@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   delete 'checkin_delete', to: 'checkin#destroy'
 
   get 'search', to: 'festa#search'
+
+  post 'avaliar_festa', to: 'avaliacao_festa#create'
+  get 'excluir_aval_festa/:id', to: 'avaliacao_festa#excluir'
 end

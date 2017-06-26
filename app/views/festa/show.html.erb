@@ -49,5 +49,11 @@
 
 <hr />
 <h3>Avaliações:</h3>
-<%= render 'avaliacoes_form' %>
+<% if logged_in? %>
+  <%= render 'avaliacoes_form' %>
+<% else %>
+  <div class="row" style='margin-top:15px; margin-bottom:15px;'>
+    <%= link_to 'Faça login para comentar', login_path, style: 'color:#337ab7;' %>
+  </div>
+<% end %>
 <%= render 'avaliacoes' %>
