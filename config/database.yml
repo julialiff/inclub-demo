@@ -7,15 +7,20 @@ default: &default
 
 development:
   <<: *default
-  database: 'inclub'
-  username: 'root'
-  password: ''
+#  database: 'inclub'
+#  username: 'root'
+#  password: ''
+database: 'inclub'
+username: 'root'
+password: 'ach20252017'
+host: 35.184.66.35
+port: 3306
 
-test:
-  <<: *default
-  database: 'inclub_test'
-  username: 'root'
-  password: ''
+#test:
+#  <<: *default
+#  database: 'inclub_test'
+#  username: 'root'
+#  password: ''
 
 production:
   <<: *default
